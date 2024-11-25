@@ -21,7 +21,7 @@ function getDetails(res){
             console.log(err.response)
         })
     });
-    return temp
+    return temp;
   }
 
   function cartSummary() {

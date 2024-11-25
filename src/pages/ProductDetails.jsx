@@ -10,23 +10,45 @@ import { BiLogoFacebookCircle } from "react-icons/bi";
 import { RiInstagramFill } from "react-icons/ri";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { orbit } from "ldrs";
+import { toast } from "sonner";
+
+orbit.register()
 
 export default function ProductDetails() {
+
   const [data, setData] = useState({
     rating: 0
   });
   const location = useLocation();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [loading, setLoading]=useState(true);
+  const [btnLoad, setBtnLoad] =useState(false);
   function increment() {
     setCount(count + 1);
   }
   function decrement() {
-    if (count == 0) {
-      setCount(0);
+    if (count == 1) {
+      setCount(1);
     } else {
       setCount(count - 1);
     }
+  }
+
+  function addToCart(id){
+    setBtnLoad(true);
+    axios.post("https://shop-co-backend.onrender.com/api/v1/cart/add", {
+      "productId": id
+    }, {withCredentials: true})
+    .then((res) => {
+      console.log(res.data)
+      setBtnLoad(false);
+      toast.success("Added to cart")
+    }).catch(err => {
+      console.log(err.response)
+      setBtnLoad(false);
+      toast.error("Something went wrong")
+    })
   }
 
   function details() {
@@ -110,8 +132,8 @@ export default function ProductDetails() {
               <span>{count}</span>
               <button onClick={increment}>+</button>
             </div>{" "}
-            <button className="border  w-full text-md poppins text-white rounded-full  bg-black rounded-full p-2 m-2">
-              Add to Cart
+            <button disabled={btnLoad} onClick={() => addToCart(location.state.id)} className="border  w-full text-md poppins text-white rounded-full  bg-black rounded-full p-2 m-2">
+              {btnLoad ? <span>Adding{" "}<l-orbit color={"white"}></l-orbit></span>:"Add to Cart"}
             </button>
           </div>
         </div>

@@ -23,7 +23,7 @@ const navigate = useNavigate()
                 />
               </li>
               <li className="cursor-pointer">
-                <LuShoppingCart size={30} />
+                <LuShoppingCart size={30} onClick={()=>navigate("/cart")} />
               </li>
               <li className="cursor-pointer">
                 <FaRegUserCircle size={30} />

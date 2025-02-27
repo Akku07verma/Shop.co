@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Poppins&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.poppins{
+    font-family: "Poppins";
+}
+
+.bungee{
+    font-family: "Bungee";
+}

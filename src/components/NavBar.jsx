@@ -22,7 +22,7 @@ const navigate = useNavigate()
                   placeholder="Search for products..."
                 />
               </li>
-              <li className="cursor-pointer">
+              <li onClick={() => navigate("/cart")} className="cursor-pointer">
                 <LuShoppingCart size={30} />
               </li>
               <li className="cursor-pointer">

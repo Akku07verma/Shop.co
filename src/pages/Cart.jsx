@@ -13,7 +13,7 @@ export default function Cart() {
 function getDetails(res){
     const temp = [];
     res.data.cart.forEach(element => {
-        axios.post("https://shop-co-backend.onrender.com/api/v1/products/details", {productId: element.id}, {withCredentials: true})
+        axios.post("https://shop-co-backend.onrender.com/api/v1/products/details", {productId: element._id}, {withCredentials: true})
         .then((res) => {
             temp.push(res.data.details);
         })
